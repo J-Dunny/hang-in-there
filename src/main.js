@@ -3,6 +3,15 @@ var randomImage = document.querySelector(".poster-img");
 var randomTitle = document.querySelector(".poster-title");
 var randomQuote = document.querySelector(".poster-quote");
 var randomButton = document.querySelector('.show-random');
+var makePosterButton = document.querySelector('.show-form');
+var mainPoster = document.querySelector('.main-poster');
+var posterForm = document.querySelector('.poster-form');
+var savedPosterButton = document.querySelector('.show-saved');
+var savedPosterView = document.querySelector('.saved-posters');
+var nevermindButton = document.querySelector('.show-main');
+var backToMainButton = document.querySelector('.back-to-main');
+var mainPosterView = document.querySelector('.main-poster');
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -103,19 +112,23 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 
+var savedPosters = [];
+var currentPoster;
 
 
 // event listeners go here 👇
-window.addEventListener('load', (event) => {
-  randomImage.src = images[getRandomIndex(images)];
-  randomTitle.innerText = titles[getRandomIndex(titles)];
-  randomQuote.innerText = quotes[getRandomIndex(quotes)];
-});
 
-//Randbom button event listener
-randomButton.addEventListener("click", randomPoster);
+window.addEventListener('load', randomPoster);
 
+randomButton.addEventListener('click', randomPoster);
 
+makePosterButton.addEventListener('click', viewForm);
+
+savedPosterButton.addEventListener('click', viewSavedPosters);
+
+nevermindButton.addEventListener('click', viewMain)
+
+backToMainButton.addEventListener('click', viewMain)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -125,9 +138,25 @@ function getRandomIndex(array) {
 
 //Random button function
 function randomPoster() {
-
   randomImage.src = images[getRandomIndex(images)];
   randomTitle.innerText = titles[getRandomIndex(titles)];
   randomQuote.innerText = quotes[getRandomIndex(quotes)];
+}
 
+function viewForm() {
+  mainPoster.classList.add('hidden');
+  posterForm.classList.remove('hidden');
+  savedPosterView.classList.add('hidden');
+}
+
+function viewSavedPosters() {
+  mainPoster.classList.add('hidden');
+  posterForm.classList.add('hidden');
+  savedPosterView.classList.remove('hidden');
+}
+
+function viewMain() {
+  mainPosterView.classList.remove('hidden');
+  posterForm.classList.add('hidden');
+  savedPosterView.classList.add('hidden');
 }
