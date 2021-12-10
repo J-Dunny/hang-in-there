@@ -3,6 +3,12 @@ var randomImage = document.querySelector(".poster-img");
 var randomTitle = document.querySelector(".poster-title");
 var randomQuote = document.querySelector(".poster-quote");
 var randomButton = document.querySelector('.show-random');
+var makePosterButton = document.querySelector('.show-form');
+var mainPoster = document.querySelector('.main-poster');
+var posterForm = document.querySelector('.poster-form');
+var savedPosterButton = document.querySelector('.show-saved');
+var savedPosterView = document.querySelector('.saved-posters');
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -103,19 +109,19 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 
+var savedPosters = [];
+var currentPoster;
 
 
 // event listeners go here 👇
-window.addEventListener('load', (event) => {
-  randomImage.src = images[getRandomIndex(images)];
-  randomTitle.innerText = titles[getRandomIndex(titles)];
-  randomQuote.innerText = quotes[getRandomIndex(quotes)];
-});
 
-//Randbom button event listener
-randomButton.addEventListener("click", randomPoster);
+window.addEventListener('load', randomPoster);
 
+randomButton.addEventListener('click', randomPoster);
 
+makePosterButton.addEventListener('click', viewForm);
+
+savedPosterButton.addEventListener('click', viewSavedPosters);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -125,9 +131,23 @@ function getRandomIndex(array) {
 
 //Random button function
 function randomPoster() {
-
   randomImage.src = images[getRandomIndex(images)];
   randomTitle.innerText = titles[getRandomIndex(titles)];
   randomQuote.innerText = quotes[getRandomIndex(quotes)];
+}
+
+function viewForm() {
+  console.log("view form")
+  mainPoster.classList.toggle('hidden');
+  posterForm.classList.toggle('hidden');
+}
+
+function viewSavedPosters() {
+  // see saved posters area
+  console.log("view saved poster")
+  savedPosterView.classList.toggle('hidden');
+  // main poster hidden
+  mainPoster.classList.toggle('hidden');
+
 
 }
