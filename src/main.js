@@ -12,6 +12,15 @@ var nevermindButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
 var mainPosterView = document.querySelector('.main-poster');
 
+//---------------Make Your Own Poster-----------------
+var myImage = document.querySelector(".poster-img");
+var myTitle = document.querySelector(".poster-title");
+var myQuote = document.querySelector(".poster-quote");
+var showMyPosterButton = document.querySelector('.make-poster');
+var posterImgInput = document.querySelector('#poster-image-url');
+var posterTitleInput = document.querySelector('#poster-title');
+var posterQuoteInput = document.querySelector('#poster-quote');
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -119,16 +128,15 @@ var currentPoster;
 // event listeners go here 👇
 
 window.addEventListener('load', randomPoster);
-
 randomButton.addEventListener('click', randomPoster);
-
 makePosterButton.addEventListener('click', viewForm);
-
 savedPosterButton.addEventListener('click', viewSavedPosters);
+nevermindButton.addEventListener('click', viewMain);
+backToMainButton.addEventListener('click', viewMain);
+//---------------Make Your Own Poster-----------------
+showMyPosterButton.addEventListener('click', showMyPoster);
 
-nevermindButton.addEventListener('click', viewMain)
 
-backToMainButton.addEventListener('click', viewMain)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -136,7 +144,7 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-//Random button function
+
 function randomPoster() {
   randomImage.src = images[getRandomIndex(images)];
   randomTitle.innerText = titles[getRandomIndex(titles)];
@@ -159,4 +167,21 @@ function viewMain() {
   mainPosterView.classList.remove('hidden');
   posterForm.classList.add('hidden');
   savedPosterView.classList.add('hidden');
+}
+
+//-------Make Your Own Poster-----------
+function showMyPoster(){
+  event.preventDefault();
+
+  var createPoster = new Poster(posterImgInput.value, posterTitleInput.value, posterQuoteInput.value);
+
+  images.push(posterImgInput.value);
+  titles.push(posterTitleInput.value);
+  quotes.push(posterQuoteInput.value);
+
+  myImage.src = posterImgInput.value;
+  myTitle.innerText = posterTitleInput.value;
+  myQuote.innerText = posterQuoteInput.value;
+
+  viewMain();
 }
