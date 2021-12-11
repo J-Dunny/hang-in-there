@@ -6,7 +6,7 @@ var randomButton = document.querySelector('.show-random');
 var makePosterButton = document.querySelector('.show-form');
 var mainPoster = document.querySelector('.main-poster');
 var posterForm = document.querySelector('.poster-form');
-var savedPosterButton = document.querySelector('.show-saved');
+var showSavedPosterButton = document.querySelector('.show-saved');
 var savedPosterView = document.querySelector('.saved-posters');
 var nevermindButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
@@ -133,7 +133,7 @@ var currentPoster;
 window.addEventListener('load', randomPoster);
 randomButton.addEventListener('click', randomPoster);
 makePosterButton.addEventListener('click', viewForm);
-savedPosterButton.addEventListener('click', viewSavedPosters);
+showSavedPosterButton.addEventListener('click', viewSavedPosters);
 nevermindButton.addEventListener('click', viewMain);
 backToMainButton.addEventListener('click', viewMain);
 //---------------Make Your Own Poster-----------------
@@ -193,11 +193,7 @@ function showMyPoster(){
 
 // ----------Save Poster-------------
 function savePoster(image, title, quote) {
-  // console.log('save this poster')
-  console.log(images[images.length - 1])
-  console.log(titles[titles.length - 1])
-  console.log(quotes[quotes.length - 1])
-
+// grab the last element in the 3 arrays and store in variables representing the currentImage, currentTitle, currentQuote
   var currentImage = images[images.length - 1]
   var currentTitle = titles[titles.length - 1]
   var currentQuote = quotes[quotes.length - 1]
@@ -205,7 +201,17 @@ function savePoster(image, title, quote) {
   // grab the currentPoster & push it into array viewSavedPosters
   // currentPoster is an object instance of the class Poster
   currentPoster = new Poster(currentImage, currentTitle, currentQuote)
-  console.log(currentPoster)
-  savedPosters.push(currentPoster)
-  console.log(savedPosters)
+
+  var duplicateCurrentPoster = savedPosters.find(function (poster) {
+    // the find array iterator will return the object if the object is found in the array.
+    // if not found in the array, it will return undefined
+    return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
+  });
+
+  console.log(`duplicate poster`, duplicateCurrentPoster)
+
+  if (!duplicateCurrentPoster) {
+    savedPosters.push(currentPoster)
+  }
+  console.log(`saved posters`, savedPosters)
 }
