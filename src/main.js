@@ -23,7 +23,9 @@ var posterQuoteInput = document.querySelector('#poster-quote');
 
 // --------------Save Poster----------------
 var savePosterButton = document.querySelector('.save-poster');
-console.log(savePosterButton)
+
+// -------------View Saved Posters-----------
+var savedPosterGrid = document.querySelector('.saved-posters-grid')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -166,6 +168,27 @@ function viewSavedPosters() {
   mainPoster.classList.add('hidden');
   posterForm.classList.add('hidden');
   savedPosterView.classList.remove('hidden');
+  // -----------------View Saved Poster-------------------
+  savedPosterGrid.innerHTML = ''
+  savedPosters.forEach(savedPoster => {
+
+    var miniPoster = document.createElement('div')
+    var miniPosterImage = document.createElement('img')
+    var miniPosterTitle = document.createElement('h2')
+    var miniPosterQuote = document.createElement('h4')
+
+    savedPosterGrid.appendChild(miniPoster)
+    miniPoster.appendChild(miniPosterImage)
+    miniPoster.appendChild(miniPosterTitle)
+    miniPoster.appendChild(miniPosterQuote)
+
+    // add attributes to the created elements
+    miniPoster.className = 'mini-poster'
+
+    miniPosterTitle.innerText = savedPoster.title
+    miniPosterQuote.innerText = savedPoster.quote
+    miniPosterImage.src = savedPoster.imageURL
+  })
 }
 
 function viewMain() {
