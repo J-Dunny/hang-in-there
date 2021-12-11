@@ -21,6 +21,9 @@ var posterImgInput = document.querySelector('#poster-image-url');
 var posterTitleInput = document.querySelector('#poster-title');
 var posterQuoteInput = document.querySelector('#poster-quote');
 
+// --------------Save Poster----------------
+var savePosterButton = document.querySelector('.save-poster');
+console.log(savePosterButton)
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -136,6 +139,8 @@ backToMainButton.addEventListener('click', viewMain);
 //---------------Make Your Own Poster-----------------
 showMyPosterButton.addEventListener('click', showMyPoster);
 
+// --------------Save This Poster------------------
+savePosterButton.addEventListener('click', savePoster);
 
 
 // functions and event handlers go here 👇
@@ -184,4 +189,23 @@ function showMyPoster(){
   myQuote.innerText = posterQuoteInput.value;
 
   viewMain();
+}
+
+// ----------Save Poster-------------
+function savePoster(image, title, quote) {
+  // console.log('save this poster')
+  console.log(images[images.length - 1])
+  console.log(titles[titles.length - 1])
+  console.log(quotes[quotes.length - 1])
+
+  var currentImage = images[images.length - 1]
+  var currentTitle = titles[titles.length - 1]
+  var currentQuote = quotes[quotes.length - 1]
+
+  // grab the currentPoster & push it into array viewSavedPosters
+  // currentPoster is an object instance of the class Poster
+  currentPoster = new Poster(currentImage, currentTitle, currentQuote)
+  console.log(currentPoster)
+  savedPosters.push(currentPoster)
+  console.log(savedPosters)
 }
