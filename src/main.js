@@ -217,9 +217,9 @@ function showMyPoster(){
 // ----------Save Poster-------------
 function savePoster() {
 // grab the last element in the 3 arrays and store in variables representing the currentImage, currentTitle, currentQuote
-  var currentImage = images[images.length - 1]
-  var currentTitle = titles[titles.length - 1]
-  var currentQuote = quotes[quotes.length - 1]
+  var currentImage = randomImage.src
+  var currentTitle = randomTitle.innerText
+  var currentQuote = randomQuote.innerText
 
   // grab the currentPoster & push it into array viewSavedPosters
   // currentPoster is an object instance of the class Poster
@@ -228,7 +228,7 @@ function savePoster() {
   var duplicateCurrentPoster = savedPosters.find(function (poster) {
     // the find array iterator will return the object if the object is found in the array.
     // if not found in the array, it will return undefined
-    return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
+  currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
   });
 
   console.log(`duplicate poster`, duplicateCurrentPoster)
