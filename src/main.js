@@ -25,7 +25,12 @@ var posterQuoteInput = document.querySelector('#poster-quote');
 var savePosterButton = document.querySelector('.save-poster');
 
 // -------------View Saved Posters-----------
-var savedPosterGrid = document.querySelector('.saved-posters-grid')
+var savedPosterGrid = document.querySelector('.saved-posters-grid');
+
+// -------------   Delete     -----------
+var delMiniPoster = document.querySelector('.saved-posters-grid');
+
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -144,6 +149,14 @@ showMyPosterButton.addEventListener('click', showMyPoster);
 // --------------Save This Poster------------------
 savePosterButton.addEventListener('click', savePoster);
 
+// -------------   Delete     -----------
+delMiniPoster.addEventListener('dblclick', deletePoster);
+
+
+// $('div').on('click', function(e){
+//     alert(e.target.id);
+// });
+// event.target  how to select nodes parent node, child node
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -174,6 +187,7 @@ function viewSavedPosters() {
 
     var miniPoster = document.createElement('div')
     var miniPosterImage = document.createElement('img')
+    // var miniPosterId = document.createElement('p')
     var miniPosterTitle = document.createElement('h2')
     var miniPosterQuote = document.createElement('h4')
 
@@ -181,13 +195,20 @@ function viewSavedPosters() {
     miniPoster.appendChild(miniPosterImage)
     miniPoster.appendChild(miniPosterTitle)
     miniPoster.appendChild(miniPosterQuote)
+    // miniPoster.appendChild(miniPosterId)
+
 
     // add attributes to the created elements
     miniPoster.className = 'mini-poster'
+    miniPoster.setAttribute('id', savedPoster.id)
+    miniPosterTitle.setAttribute('id', savedPoster.id)
+    miniPosterQuote.setAttribute('id', savedPoster.id)
+    miniPosterImage.setAttribute('id', savedPoster.id)
 
     miniPosterTitle.innerText = savedPoster.title
     miniPosterQuote.innerText = savedPoster.quote
     miniPosterImage.src = savedPoster.imageURL
+    // miniPosterId.innerText = savedPoster.id
   })
 }
 
@@ -220,6 +241,7 @@ function savePoster() {
   var currentTitle = randomTitle.innerText
   var currentQuote = randomQuote.innerText
 
+
   // grab the currentPoster & push it into array viewSavedPosters
   // currentPoster is an object instance of the class Poster
   currentPoster = new Poster(currentImage, currentTitle, currentQuote)
@@ -234,6 +256,27 @@ function savePoster() {
 
   if (!duplicateCurrentPoster) {
     savedPosters.push(currentPoster)
+    console.log(currentPoster)
   }
 
+
+}
+
+
+function deletePoster(e){
+  console.log(e.target.id);
+  var delPoster = e.target.id;
+
+  for (poster in savedPosters){
+    if (savedPosters[poster].id == delPoster){
+
+      savedPosters.splice(poster, 1)
+      console.log("deleted "+ e.target.className)
+      e.target.parentNode.className = 'hidden'
+    }
+  }
+  // console.log(savedPoster.includes(delPoster))
+
+  // savedPosters.splice(id, 1);
+  // console.log(savedPosters)
 }
