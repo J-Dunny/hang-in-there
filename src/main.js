@@ -143,6 +143,7 @@ makePosterButton.addEventListener('click', viewForm);
 showSavedPosterButton.addEventListener('click', viewSavedPosters);
 nevermindButton.addEventListener('click', viewMain);
 backToMainButton.addEventListener('click', viewMain);
+
 //---------------Make Your Own Poster-----------------
 showMyPosterButton.addEventListener('click', showMyPoster);
 
@@ -152,11 +153,6 @@ savePosterButton.addEventListener('click', savePoster);
 // -------------   Delete     -----------
 delMiniPoster.addEventListener('dblclick', deletePoster);
 
-
-// $('div').on('click', function(e){
-//     alert(e.target.id);
-// });
-// event.target  how to select nodes parent node, child node
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -181,13 +177,13 @@ function viewSavedPosters() {
   mainPoster.classList.add('hidden');
   posterForm.classList.add('hidden');
   savedPosterView.classList.remove('hidden');
+
   // -----------------View Saved Poster-------------------
   savedPosterGrid.innerHTML = ''
   savedPosters.forEach(savedPoster => {
 
     var miniPoster = document.createElement('div')
     var miniPosterImage = document.createElement('img')
-    // var miniPosterId = document.createElement('p')
     var miniPosterTitle = document.createElement('h2')
     var miniPosterQuote = document.createElement('h4')
 
@@ -195,7 +191,7 @@ function viewSavedPosters() {
     miniPoster.appendChild(miniPosterImage)
     miniPoster.appendChild(miniPosterTitle)
     miniPoster.appendChild(miniPosterQuote)
-    // miniPoster.appendChild(miniPosterId)
+
 
 
     // add attributes to the created elements
@@ -208,7 +204,7 @@ function viewSavedPosters() {
     miniPosterTitle.innerText = savedPoster.title
     miniPosterQuote.innerText = savedPoster.quote
     miniPosterImage.src = savedPoster.imageURL
-    // miniPosterId.innerText = savedPoster.id
+
   })
 }
 
@@ -256,7 +252,7 @@ function savePoster() {
 
   if (!duplicateCurrentPoster) {
     savedPosters.push(currentPoster)
-    console.log(currentPoster)
+
   }
 
 
@@ -264,19 +260,15 @@ function savePoster() {
 
 
 function deletePoster(e){
-  console.log(e.target.id);
+
   var delPoster = e.target.id;
 
   for (poster in savedPosters){
     if (savedPosters[poster].id == delPoster){
 
       savedPosters.splice(poster, 1)
-      console.log("deleted "+ e.target.className)
-      e.target.parentNode.className = 'hidden'
+      viewSavedPosters()
     }
   }
-  // console.log(savedPoster.includes(delPoster))
 
-  // savedPosters.splice(id, 1);
-  // console.log(savedPosters)
 }
