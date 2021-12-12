@@ -25,7 +25,12 @@ var posterQuoteInput = document.querySelector('#poster-quote');
 var savePosterButton = document.querySelector('.save-poster');
 
 // -------------View Saved Posters-----------
-var savedPosterGrid = document.querySelector('.saved-posters-grid')
+var savedPosterGrid = document.querySelector('.saved-posters-grid');
+
+// -------------   Delete     -----------
+var delMiniPoster = document.querySelector('.saved-posters-grid');
+
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -138,11 +143,15 @@ makePosterButton.addEventListener('click', viewForm);
 showSavedPosterButton.addEventListener('click', viewSavedPosters);
 nevermindButton.addEventListener('click', viewMain);
 backToMainButton.addEventListener('click', viewMain);
+
 //---------------Make Your Own Poster-----------------
 showMyPosterButton.addEventListener('click', showMyPoster);
 
 // --------------Save This Poster------------------
 savePosterButton.addEventListener('click', savePoster);
+
+// -------------   Delete     -----------
+delMiniPoster.addEventListener('dblclick', deletePoster);
 
 
 // functions and event handlers go here 👇
@@ -168,6 +177,7 @@ function viewSavedPosters() {
   mainPoster.classList.add('hidden');
   posterForm.classList.add('hidden');
   savedPosterView.classList.remove('hidden');
+
   // -----------------View Saved Poster-------------------
   savedPosterGrid.innerHTML = ''
   savedPosters.forEach(savedPoster => {
@@ -182,12 +192,19 @@ function viewSavedPosters() {
     miniPoster.appendChild(miniPosterTitle)
     miniPoster.appendChild(miniPosterQuote)
 
+
+
     // add attributes to the created elements
     miniPoster.className = 'mini-poster'
+    miniPoster.setAttribute('id', savedPoster.id)
+    miniPosterTitle.setAttribute('id', savedPoster.id)
+    miniPosterQuote.setAttribute('id', savedPoster.id)
+    miniPosterImage.setAttribute('id', savedPoster.id)
 
     miniPosterTitle.innerText = savedPoster.title
     miniPosterQuote.innerText = savedPoster.quote
     miniPosterImage.src = savedPoster.imageURL
+
   })
 }
 
@@ -203,9 +220,9 @@ function showMyPoster(){
 
   var createPoster = new Poster(posterImgInput.value, posterTitleInput.value, posterQuoteInput.value);
 
-  images.push(posterImgInput.value);
-  titles.push(posterTitleInput.value);
-  quotes.push(posterQuoteInput.value);
+  images.push(createPoster.imageURL);
+  titles.push(createPoster.title);
+  quotes.push(createPoster.quote);
 
   myImage.src = posterImgInput.value;
   myTitle.innerText = posterTitleInput.value;
@@ -215,11 +232,11 @@ function showMyPoster(){
 }
 
 // ----------Save Poster-------------
-function savePoster(image, title, quote) {
-// grab the last element in the 3 arrays and store in variables representing the currentImage, currentTitle, currentQuote
-  var currentImage = images[images.length - 1]
-  var currentTitle = titles[titles.length - 1]
-  var currentQuote = quotes[quotes.length - 1]
+function savePoster() {
+  var currentImage = randomImage.src
+  var currentTitle = randomTitle.innerText
+  var currentQuote = randomQuote.innerText
+
 
   // grab the currentPoster & push it into array viewSavedPosters
   // currentPoster is an object instance of the class Poster
@@ -228,13 +245,30 @@ function savePoster(image, title, quote) {
   var duplicateCurrentPoster = savedPosters.find(function (poster) {
     // the find array iterator will return the object if the object is found in the array.
     // if not found in the array, it will return undefined
-    return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
+  return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
   });
 
-  console.log(`duplicate poster`, duplicateCurrentPoster)
+
 
   if (!duplicateCurrentPoster) {
     savedPosters.push(currentPoster)
+
   }
-  console.log(`saved posters`, savedPosters)
+
+
+}
+
+
+function deletePoster(e){
+
+  var delPoster = e.target.id;
+
+  for (poster in savedPosters){
+    if (savedPosters[poster].id == delPoster){
+
+      savedPosters.splice(poster, 1)
+      viewSavedPosters()
+    }
+  }
+
 }
