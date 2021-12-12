@@ -216,7 +216,6 @@ function showMyPoster(){
 
 // ----------Save Poster-------------
 function savePoster() {
-// grab the last element in the 3 arrays and store in variables representing the currentImage, currentTitle, currentQuote
   var currentImage = randomImage.src
   var currentTitle = randomTitle.innerText
   var currentQuote = randomQuote.innerText
@@ -228,13 +227,13 @@ function savePoster() {
   var duplicateCurrentPoster = savedPosters.find(function (poster) {
     // the find array iterator will return the object if the object is found in the array.
     // if not found in the array, it will return undefined
-  currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
+  return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
   });
 
-  console.log(`duplicate poster`, duplicateCurrentPoster)
+
 
   if (!duplicateCurrentPoster) {
     savedPosters.push(currentPoster)
   }
-  console.log(`saved posters`, savedPosters)
+
 }
