@@ -16,6 +16,8 @@ The site allows users to:
 The website will generate a random poster when the page loads. Users can also generate a random poster by clicking the button, "Show Another Random Poster".
 
 Check this out 👇
+![Gif of making custom novel cover](./readme-imgs/randomGif.gif)
+
 
 ## Generate a Custom Poster:
 
@@ -26,11 +28,15 @@ Users can create their own poster by following these steps:
 4. The customized poster should be on display on the main page.
 
 Check this out 👇
+![Gif of making custom novel cover](./readme-imgs/makePoster.gif)
 
-## Save a Custom Poster:
+## Save a Poster:
 
+1. Click save poster to save any poster.
+2. Click view saved posters to view the posters that have been saved.
 
 Check this out 👇
+![Gif of making custom novel cover](./readme-imgs/savePoster.gif)
 
 ## Future Features:
 
@@ -44,8 +50,12 @@ Check this out 👇
 * Email a generated poster
 
 ## Contributors:
-Jake Dunafon
+Jake Dunafon https://github.com/J-Dunny
 
 Lauralyn Watson https://github.com/lswatson16
 
 ## Links:
+
+Deploy link: https://j-dunny.github.io/hang-in-there/
+
+Repo link: https://github.com/J-Dunny/hang-in-there
