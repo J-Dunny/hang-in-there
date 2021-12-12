@@ -1,18 +1,51 @@
-# Hang In There
+# Hang In There: Paired Project
 
-A boilerplate repo. 
+## Overview:
 
-## Set Up
+We created a website that allows you to generate a random poster and create a custom poster. Users are able to save any poster they created. We built this application only using Javascript to manipulate the DOM.
 
-1. One teammate: fork this repository
-2. Clone down your new, forked repo
-3. cd into the repository
-4. Open it in your text editor
-5. Add all project partners and your assigned instructor as collaborators on the repository
+The site allows users to:
+* Generate a random Poster
+* Create a customized poster
+* Save any poster whether it was random or customized
+* Display all saved posters
+* Delete a saved poster
 
-Project spec & rubric can be found [here](https://frontend.turing.io/projects/module-1/hang-in-there.html)
+## Generate a Random Poster:
 
-To view your project:
+The website will generate a random poster when the page loads. Users can also generate a random poster by clicking the button, "Show Another Random Poster".
 
-1. In your terminal, navigate to your project repo
-2. Run the command `open index.html`
+Check this out 👇
+
+## Generate a Custom Poster:
+
+Users can create their own poster by following these steps:
+1. Click the "Make Your Own Poster" button on the main page.
+2. Fill out the form in the proper fields requesting the image url, title, and quote.
+3. Click "Show My Poster" button.
+4. The customized poster should be on display on the main page.
+
+Check this out 👇
+
+## Save a Custom Poster:
+
+
+Check this out 👇
+
+## Future Features:
+
+* Alerts prompting the user:
+  * the poster was saved
+  * the poster already exists in the collection
+  * the poster was successfully saved
+  * the poster was successfully deleted
+
+
+* Email a generated poster
+
+## Contributors:
+Jake Dunafon
+
+Lauralyn Watson https://github.com/lswatson16
+
+## Links:
