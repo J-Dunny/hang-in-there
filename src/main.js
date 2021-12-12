@@ -203,9 +203,9 @@ function showMyPoster(){
 
   var createPoster = new Poster(posterImgInput.value, posterTitleInput.value, posterQuoteInput.value);
 
-  images.push(posterImgInput.value);
-  titles.push(posterTitleInput.value);
-  quotes.push(posterQuoteInput.value);
+  images.push(createPoster.imageURL);
+  titles.push(createPoster.title);
+  quotes.push(createPoster.quote);
 
   myImage.src = posterImgInput.value;
   myTitle.innerText = posterTitleInput.value;
@@ -215,7 +215,7 @@ function showMyPoster(){
 }
 
 // ----------Save Poster-------------
-function savePoster(image, title, quote) {
+function savePoster() {
 // grab the last element in the 3 arrays and store in variables representing the currentImage, currentTitle, currentQuote
   var currentImage = images[images.length - 1]
   var currentTitle = titles[titles.length - 1]
