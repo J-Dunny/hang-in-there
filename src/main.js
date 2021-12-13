@@ -11,8 +11,6 @@ var savedPosterView = document.querySelector('.saved-posters');
 var nevermindButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
 var mainPosterView = document.querySelector('.main-poster');
-
-//---------------Make Your Own Poster-----------------
 var myImage = document.querySelector(".poster-img");
 var myTitle = document.querySelector(".poster-title");
 var myQuote = document.querySelector(".poster-quote");
@@ -20,17 +18,9 @@ var showMyPosterButton = document.querySelector('.make-poster');
 var posterImgInput = document.querySelector('#poster-image-url');
 var posterTitleInput = document.querySelector('#poster-title');
 var posterQuoteInput = document.querySelector('#poster-quote');
-
-// --------------Save Poster----------------
 var savePosterButton = document.querySelector('.save-poster');
-
-// -------------View Saved Posters-----------
 var savedPosterGrid = document.querySelector('.saved-posters-grid');
-
-// -------------   Delete     -----------
 var delMiniPoster = document.querySelector('.saved-posters-grid');
-
-
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -134,7 +124,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-
 // event listeners go here 👇
 
 window.addEventListener('load', randomPoster);
@@ -143,23 +132,15 @@ makePosterButton.addEventListener('click', viewForm);
 showSavedPosterButton.addEventListener('click', viewSavedPosters);
 nevermindButton.addEventListener('click', viewMain);
 backToMainButton.addEventListener('click', viewMain);
-
-//---------------Make Your Own Poster-----------------
-showMyPosterButton.addEventListener('click', showMyPoster);
-
-// --------------Save This Poster------------------
+showMyPosterButton.addEventListener('click', generatePoster);
 savePosterButton.addEventListener('click', savePoster);
-
-// -------------   Delete     -----------
 delMiniPoster.addEventListener('dblclick', deletePoster);
-
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-
 
 function randomPoster() {
   randomImage.src = images[getRandomIndex(images)];
@@ -178,8 +159,8 @@ function viewSavedPosters() {
   posterForm.classList.add('hidden');
   savedPosterView.classList.remove('hidden');
 
-  // -----------------View Saved Poster-------------------
   savedPosterGrid.innerHTML = ''
+
   savedPosters.forEach(savedPoster => {
 
     var miniPoster = document.createElement('div')
@@ -192,10 +173,8 @@ function viewSavedPosters() {
     miniPoster.appendChild(miniPosterTitle)
     miniPoster.appendChild(miniPosterQuote)
 
-
-
-    // add attributes to the created elements
     miniPoster.className = 'mini-poster'
+
     miniPoster.setAttribute('id', savedPoster.id)
     miniPosterTitle.setAttribute('id', savedPoster.id)
     miniPosterQuote.setAttribute('id', savedPoster.id)
@@ -204,7 +183,6 @@ function viewSavedPosters() {
     miniPosterTitle.innerText = savedPoster.title
     miniPosterQuote.innerText = savedPoster.quote
     miniPosterImage.src = savedPoster.imageURL
-
   })
 }
 
@@ -214,8 +192,7 @@ function viewMain() {
   savedPosterView.classList.add('hidden');
 }
 
-//-------Make Your Own Poster-----------
-function showMyPoster(){
+function generatePoster() {
   event.preventDefault();
 
   var createPoster = new Poster(posterImgInput.value, posterTitleInput.value, posterQuoteInput.value);
@@ -231,44 +208,29 @@ function showMyPoster(){
   viewMain();
 }
 
-// ----------Save Poster-------------
 function savePoster() {
   var currentImage = randomImage.src
   var currentTitle = randomTitle.innerText
   var currentQuote = randomQuote.innerText
 
-
-  // grab the currentPoster & push it into array viewSavedPosters
-  // currentPoster is an object instance of the class Poster
   currentPoster = new Poster(currentImage, currentTitle, currentQuote)
 
   var duplicateCurrentPoster = savedPosters.find(function (poster) {
-    // the find array iterator will return the object if the object is found in the array.
-    // if not found in the array, it will return undefined
-  return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
+    return currentPoster.image === poster.image && currentPoster.title === poster.title && currentPoster.quote === poster.quote
   });
-
-
 
   if (!duplicateCurrentPoster) {
     savedPosters.push(currentPoster)
-
   }
-
-
 }
 
+function deletePoster(event) {
+  var delPoster = event.target.id;
 
-function deletePoster(e){
-
-  var delPoster = e.target.id;
-
-  for (poster in savedPosters){
+  for (poster in savedPosters) {
     if (savedPosters[poster].id == delPoster){
-
       savedPosters.splice(poster, 1)
       viewSavedPosters()
     }
   }
-
 }
